@@ -3,11 +3,12 @@ import os
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])  # <-- ganti dari /crapi/had/viewstats jadi /
+@app.route('/crapi/had/viewstats', methods=['GET'])
 def viewstats():
     token = request.args.get('token')
     sEcho = request.args.get('sEcho', 1)
     
+    # Token ambil dari Railway Variables biar aman
     API_TOKEN = os.environ.get('API_TOKEN', 'hYuwoskkkaw28kssx==')
     
     if token != API_TOKEN:
