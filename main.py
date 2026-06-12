@@ -9,8 +9,10 @@ def viewstats():
     sEcho = request.args.get('sEcho', 1)
     
     # Token ambil dari Railway Variables biar aman
-    API_TOKEN = os.environ.get('API_TOKEN', 'Qk5YQUVBUzRkeJVjR4CId0GDlFVBc2Bia4CFU0qAWHRbZZaGXmGHUw==')
-    
+    API_TOKEN = os.environ.get('API_TOKEN')
+
+    if not API_TOKEN:
+        return jsonify({"error": "API_TOKEN belum diset di Railway"}), 500
     if token != API_TOKEN:
         return jsonify({"error": "Invalid token"}), 401
 
